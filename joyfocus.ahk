@@ -5,25 +5,25 @@ SetTimer, WatchAxis, 100 ; milliseconds
 return
 
 WatchAxis:
-GetKeyState, JoyX, JoyX  ; Get position of stick Yaw.
+GetKeyState, JoyX, JoyX  ; Get position of stick Roll.
 GetKeyState, JoyY, JoyY  ; Get position of stick Pitch.
 GetKeyState, JoyZ, JoyZ  ; Get position of Throttle.
-YawWatcherPrev := YawWatcher
+RollWatcherPrev := RollWatcher
 PitchWatcherPrev := PitchWatcher
 ThrottleWatcherPrev := ThrottleWatcher
 JoyXf := Floor(JoyX)
 JoyYf := Floor(JoyY)
 JoyZf := Floor(JoyZ)
 
-if (JoyXf - YawWatcherPrev > 10 || JoyXf - YawWatcherPrev < -10) or (JoyYf - PitchWatcherPrev > 10 || JoyYf - YawWatcherPrev < -10) or (JoyZf - ThrottleWatcherPrev > 10 || JoyZf - ThrottleWatcherPrev < -10)
+if (JoyXf - RollWatcherPrev > 10 || JoyXf - RollWatcherPrev < -10) or (JoyYf - PitchWatcherPrev > 10 || JoyYf - RollWatcherPrev < -10) or (JoyZf - ThrottleWatcherPrev > 10 || JoyZf - ThrottleWatcherPrev < -10)
 {
 	IfWinExist, Elite - Dangerous (CLIENT)
 	{
-		YawWatcher := JoyXf
+		RollWatcher := JoyXf
 		PitchWatcher := JoyYf
 		ThrottleWatcher := JoyZf
 		WinActivate
-		;ToolTip, %YawWatcherPrev% %YawWatcher%`n%PitchWatcherPrev% %PitchWatcher%`n%ThrottleWatcherPrev% %ThrottleWatcher%
+		;ToolTip, %RollWatcherPrev% %RollWatcher%`n%PitchWatcherPrev% %PitchWatcher%`n%ThrottleWatcherPrev% %ThrottleWatcher%
 		return
 	}
 }
